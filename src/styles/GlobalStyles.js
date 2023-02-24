@@ -21,14 +21,18 @@ export const GlobalStyleComponent = createGlobalStyle`
   }
   
   body {
-  min-height: 100%;
+  height: 100%;
   background-color: ${p => p.theme.colors.white};
   color: ${p => p.theme.colors.text};
   font-family: ${p => p.theme.fonts.body};
   font-size: ${p => p.theme.fontSizes.s}px;
   line-height: ${p => p.theme.lineHeights.body};
   }
+
   #root {
     height: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    gap: ${({ theme }) => theme.space[5]}px
   }
 `;
