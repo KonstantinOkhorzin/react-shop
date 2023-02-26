@@ -15,7 +15,7 @@ const StyledHeader = styled.header`
 const Header = () => {
   return (
     <StyledHeader>
-      <Basket />
+      <Basket quantity={0} />
     </StyledHeader>
   );
 };

@@ -1,16 +1,18 @@
 import React from 'react';
-import Badge from '@mui/material/Badge';
-import IconButton from '@mui/material/IconButton';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { MdShoppingCart } from 'react-icons/md';
 
-const Basket = () => {
-    return (
+import IconButton from '../UI/IconButton';
+import Badge from '../UI/Badge';
+
+const Basket = ({ quantity }) => {
+  return (
+    <>
       <IconButton aria-label='cart'>
-        <Badge badgeContent={0} color='warning'>
-          <ShoppingCartIcon color='secondary' />
-        </Badge>
+        {quantity > 0 && <Badge quantity={quantity} />}
+        <MdShoppingCart />
       </IconButton>
-    );
+    </>
+  );
 };
 
 export default Basket;

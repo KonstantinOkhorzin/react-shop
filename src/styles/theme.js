@@ -6,10 +6,11 @@ export const theme = Object.freeze({
     yellow: '#e09f3e',
     gold: '#ffd700',
     grey: '#EFEFEF',
-    text: '#2a2a2a',
-    background: '#fff',
-    primary: '#61DAFB',
-    secondary: '#05c',
+    orange: '#ef6c00',
+    text: '#83A8DC',
+    background: '#0D141B',
+    primary: '#1A232F',
+    secondary: '#151d27',
   },
   space: [0, 2, 4, 8, 16, 32, 64, 128, 256],
   fonts: {
@@ -21,7 +22,7 @@ export const theme = Object.freeze({
   fontSizes: {
     xs: 12,
     s: 14,
-    m: 20,
+    m: 16,
     l: 32,
     xl: 42,
   },
@@ -43,7 +44,7 @@ export const theme = Object.freeze({
     round: '50%',
   },
   shadows: {
-    small: '0 5px 7px 2px rgb(51 51 51 / .23)',
+    small: '0 5px 7px 2px rgb(131 168 220 / .1)',
     regular: '0px 4px 10px 4px #9e9e9e',
     medium: '0 9px 47px 11px rgb(51 51 51 / .18);',
     outline: '0px 0px 0px 2px #07080a;',

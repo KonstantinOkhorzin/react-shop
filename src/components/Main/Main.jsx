@@ -1,5 +1,6 @@
-import React from 'react';
 import styled from 'styled-components';
+
+import GoodsInfo from '../GoodsInfo';
 
 const StyledMain = styled.main`
   max-width: 1200px;
@@ -8,8 +9,12 @@ const StyledMain = styled.main`
   padding-right: ${({ theme }) => theme.space[4]}px;
 `;
 
-const Main = () => {
-  return <StyledMain></StyledMain>;
+const Main = (props) => {
+  return (
+    <StyledMain>
+      <GoodsInfo {...props} />
+    </StyledMain>
+  );
 };
 
 export default Main;

@@ -8,7 +8,7 @@ const StyledFooter = styled.footer`
   padding-top: ${({ theme }) => theme.space[4]}px;
   padding-bottom: ${({ theme }) => theme.space[4]}px;
   background-color: ${({ theme }) => theme.colors.primary};
-  color: ${({ theme }) => theme.colors.white};
+  color: ${({ theme }) => theme.colors.text};
 `;
 
 const Footer = () => {
