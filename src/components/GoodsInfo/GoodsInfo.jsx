@@ -4,7 +4,7 @@ import GoodsList from '../GoodsList/GoodsList';
 import PendingDataView from '../PendingDataView';
 import ErrorDataView from '../ErrorDataView';
 
-const GoodsInfo = ({ goods, status, error }) => {
+const GoodsInfo = ({ goods, status, error, onAddToBasket }) => {
   switch (status) {
     case 'pending':
       return <PendingDataView />;
@@ -13,7 +13,7 @@ const GoodsInfo = ({ goods, status, error }) => {
       return <ErrorDataView error={error} />;
 
     case 'resolved':
-      return <GoodsList goods={goods} />;
+      return <GoodsList goods={goods} onAddToBasket={onAddToBasket} />;
 
     default:
       return null;

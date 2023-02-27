@@ -18,6 +18,7 @@ function App() {
   const [goods, setGoods] = useState([]);
   const [error, setError] = useState(null);
   const [status, setStatus] = useState(Status.IDLE);
+  const [order, setOrder] = useState([]);
 
   useEffect(() => {
     setStatus(Status.PENDING);
@@ -35,11 +36,23 @@ function App() {
         setStatus(Status.REJECTED);
       });
   }, []);
+  
+  const addToBasket = item => {
+    setOrder(order =>
+      order.findIndex(orderItem => orderItem.id === item.id) >= 0
+        ? order.map(orderItem =>
+            orderItem.id === item.id
+              ? { ...orderItem, quantity: orderItem.quantity + 1 }
+              : orderItem
+          )
+        : [...order, { ...item, quantity: 1 }]
+    );
+  };
 
   return (
     <>
-      <Header />
-      <Main goods={goods} error={error} status={status} />
+      <Header quantity={order.length} />
+      <Main goods={goods} error={error} status={status} onAddToBasket={addToBasket} />
       <Footer />
     </>
   );

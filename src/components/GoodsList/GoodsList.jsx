@@ -10,11 +10,11 @@ const StyledList = styled.ul`
   gap: ${({ theme }) => theme.space[4]}px;
 `;
 
-const GoodsList = ({ goods }) => {
+const GoodsList = ({ goods, onAddToBasket }) => {
   return (
     <StyledList>
       {goods.map(item => (
-        <GoodsCard key={item.id} {...item} />
+        <GoodsCard key={item.id} {...item} onAddToBasket={onAddToBasket} />
       ))}
     </StyledList>
   );

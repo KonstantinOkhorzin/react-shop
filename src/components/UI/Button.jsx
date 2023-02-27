@@ -42,7 +42,7 @@ Button.propTypes = {
   children: PropTypes.node.isRequired,
   type: PropTypes.string,
   disabled: PropTypes.bool,
-  icon: PropTypes.node,
+  icon: PropTypes.elementType,
 };
 
 export default Button;

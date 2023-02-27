@@ -3,6 +3,9 @@ import styled from 'styled-components';
 import Basket from '../Basket';
 
 const StyledHeader = styled.header`
+  position: fixed;
+  top: 0;
+  width: 100%;
   display: flex;
   justify-content: flex-end;
   background-color: ${({ theme }) => theme.colors.primary};
@@ -12,10 +15,10 @@ const StyledHeader = styled.header`
   padding-bottom: ${({ theme }) => theme.space[3]}px;
 `;
 
-const Header = () => {
+const Header = ({ quantity }) => {
   return (
     <StyledHeader>
-      <Basket quantity={0} />
+      <Basket quantity={quantity} />
     </StyledHeader>
   );
 };

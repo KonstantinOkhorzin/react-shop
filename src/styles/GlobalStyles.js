@@ -30,9 +30,10 @@ export const GlobalStyleComponent = createGlobalStyle`
   }
 
   #root {
+    padding-top: 88px;
     height: 100%;
     display: grid;
-    grid-template-rows: auto 1fr auto;
+    grid-template-rows: 1fr auto;
     gap: ${({ theme }) => theme.space[5]}px
   }
 `;
