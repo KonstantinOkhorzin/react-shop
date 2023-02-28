@@ -4,14 +4,25 @@ import IconButton from '../UI/IconButton';
 
 export const Item = styled.li`
   display: grid;
-  grid-template-columns: 2fr repeat(2, 1fr) auto;
+  grid-template-columns: repeat(2, 1fr) auto;
   align-items: center;
   border-bottom: ${({ theme }) => theme.borders.normal};
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}px) {
+    grid-template-columns: 2fr repeat(2, 1fr) auto;
+  }
 `;
 
 export const Title = styled.h3`
+  grid-column: 1 / -1;
+  text-align: center;
   font-size: ${({ theme }) => theme.fontSizes.m}px;
   font-weight: ${({ theme }) => theme.fontWeights.bold};
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}px) {
+    grid-column: 1 / 2;
+    text-align: start;
+  }
 `;
 
 export const QuantityControls = styled.div`

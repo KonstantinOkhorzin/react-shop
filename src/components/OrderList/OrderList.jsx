@@ -1,6 +1,13 @@
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 import OrderItem from '../OrderItem/OrderItem';
+
+const List = styled.ul`
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: ${({ theme }) => theme.space[4]}px;
+`;
 
 const OrderList = ({
   order,
@@ -10,7 +17,7 @@ const OrderList = ({
   onInputQuantityChange,
 }) => {
   return (
-    <ul>
+    <List>
       {order.map(({ id, ...restProps }) => (
         <OrderItem
           key={id}
@@ -21,7 +28,7 @@ const OrderList = ({
           onInputQuantityChange={e => onInputQuantityChange(e, id)}
         />
       ))}
-    </ul>
+    </List>
   );
 };
 
