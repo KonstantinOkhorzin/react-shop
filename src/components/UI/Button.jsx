@@ -20,7 +20,7 @@ const StyledButton = styled.button`
   cursor: ${({ disabled }) => !disabled && 'pointer'};
   transition: all ${({ theme }) => theme.animation.cubicBezier};
   :hover:not(:disabled),
-  :focus {
+  :focus:not(:disabled) {
     background-color: ${({ theme }) => theme.colors.text};
     color: ${({ theme }) => theme.colors.primary};
   }

@@ -28,7 +28,11 @@ function App() {
         headers: { Authorization: API_KEY },
       })
       .then(response => {
-        setGoods(response.data.featured);
+        setGoods(
+          response.data.featured.filter(
+            (item, index, self) => index === self.findIndex(product => product.id === item.id)
+          )
+        );
         setStatus(Status.RESOLVED);
       })
       .catch(error => {
@@ -36,7 +40,7 @@ function App() {
         setStatus(Status.REJECTED);
       });
   }, []);
-  
+
   const addToBasket = item => {
     setOrder(order =>
       order.findIndex(orderItem => orderItem.id === item.id) >= 0
@@ -49,9 +53,50 @@ function App() {
     );
   };
 
+  const removeOrderItem = id => {
+    setOrder(order => order.filter(item => item.id !== id));
+  };
+
+  const decreaseQuantity = id => {
+    setOrder(order =>
+      order.map(item =>
+        item.id === id
+          ? { ...item, quantity: item.quantity > 1 ? item.quantity - 1 : item.quantity }
+          : item
+      )
+    );
+  };
+
+  const increaseQuantity = id => {
+    setOrder(order =>
+      order.map(item =>
+        item.id === id
+          ? { ...item, quantity: item.quantity < 99 ? item.quantity + 1 : item.quantity }
+          : item
+      )
+    );
+  };
+
+  const inputQuantityChange = (e, id) => {
+    const value = Number(e.target.value.replace(/\D/g, ''));
+    setOrder(order =>
+      order.map(item =>
+        item.id === id
+          ? { ...item, quantity: value > 0 && value < 100 ? value : item.quantity }
+          : item
+      )
+    );
+  };
+
   return (
     <>
-      <Header quantity={order.length} />
+      <Header
+        order={order}
+        onRemoveOrderItem={removeOrderItem}
+        onDecreaseQuantity={decreaseQuantity}
+        onIncreaseQuantity={increaseQuantity}
+        onInputQuantityChange={inputQuantityChange}
+      />
       <Main goods={goods} error={error} status={status} onAddToBasket={addToBasket} />
       <Footer />
     </>

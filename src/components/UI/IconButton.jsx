@@ -10,22 +10,23 @@ const StyledIconButton = styled.button`
   justify-content: center;
   border-radius: ${({ theme }) => theme.radii.round};
   transition: all ${({ theme }) => theme.animation.cubicBezier};
-  background-color: ${({ theme }) => theme.colors.primary};
-  cursor: pointer;
+  background-color: transparent;
+  color: ${({ theme, disabled }) => (disabled ? theme.colors.grey : theme.colors.text)};
+  cursor: ${({ disabled }) => !disabled && 'pointer'};
   svg {
     fill: currentColor;
     width: 20px;
     height: 20px;
   }
-  :hover,
-  :focus {
+  :hover:not(:disabled),
+  :focus:not(:disabled) {
     background-color: ${({ theme }) => theme.colors.secondary};
   }
 `;
 
-const IconButton = ({ children, type = 'button', ...allyProps }) => {
+const IconButton = ({ children, type = 'button', disabled = false, ...allyProps }) => {
   return (
-    <StyledIconButton type={type} {...allyProps}>
+    <StyledIconButton type={type} disabled={disabled} {...allyProps}>
       {children}
     </StyledIconButton>
   );
@@ -34,6 +35,7 @@ const IconButton = ({ children, type = 'button', ...allyProps }) => {
 IconButton.propTypes = {
   children: PropTypes.node.isRequired,
   'aria-label': PropTypes.string.isRequired,
+  disabled: PropTypes.bool,
 };
 
 export default IconButton;

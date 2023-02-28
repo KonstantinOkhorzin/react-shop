@@ -15,10 +15,10 @@ const StyledHeader = styled.header`
   padding-bottom: ${({ theme }) => theme.space[3]}px;
 `;
 
-const Header = ({ quantity }) => {
+const Header = (props) => {
   return (
     <StyledHeader>
-      <Basket quantity={quantity} />
+      <Basket {...props} />
     </StyledHeader>
   );
 };
