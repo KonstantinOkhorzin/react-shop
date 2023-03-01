@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
 
-import { API_KEY, API_URL } from '../config';
+import { fetchFeaturedGoods } from '../services/api';
 
 const Status = {
   IDLE: 'idle',
@@ -23,10 +22,7 @@ function App() {
   useEffect(() => {
     setStatus(Status.PENDING);
 
-    axios
-      .get(API_URL, {
-        headers: { Authorization: API_KEY },
-      })
+    fetchFeaturedGoods()
       .then(response => {
         setGoods(
           response.data.featured.filter(
