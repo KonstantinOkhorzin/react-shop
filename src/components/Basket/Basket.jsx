@@ -24,10 +24,10 @@ const DefaultBasket = styled.div`
 `;
 
 const Basket = ({ order, ...restProps }) => {
-  const [showOrder, setShowOrder] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const toggleModal = () => {
-    setShowOrder(state => !state);
+    setModalIsOpen(state => !state);
   };
 
   return (
@@ -36,7 +36,7 @@ const Basket = ({ order, ...restProps }) => {
         {order.length > 0 && <Badge quantity={order.length} />}
         <MdShoppingCart />
       </IconButton>
-      {showOrder && (
+      {modalIsOpen && (
         <Modal onCloseModal={toggleModal}>
           {order.length > 0 ? (
             <OrderInfo order={order} {...restProps} />

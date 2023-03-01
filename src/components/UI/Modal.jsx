@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import styled from 'styled-components';
 import { createPortal } from 'react-dom';
 import { CgClose } from 'react-icons/cg';
+import PropTypes from 'prop-types';
 
 import IconButton from './IconButton';
 
@@ -36,6 +37,8 @@ const CloseButton = styled(IconButton)`
 
 const Modal = ({ children, onCloseModal }) => {
   useEffect(() => {
+    document.body.style.overflow = 'hidden';
+
     const onKeyDown = e => {
       if (e.code === 'Escape') {
         onCloseModal();
@@ -45,6 +48,7 @@ const Modal = ({ children, onCloseModal }) => {
     document.addEventListener('keydown', onKeyDown);
 
     return () => {
+      document.body.style.overflow = '';
       document.removeEventListener('keydown', onKeyDown);
     };
   }, [onCloseModal]);
@@ -66,6 +70,11 @@ const Modal = ({ children, onCloseModal }) => {
     </Backdrop>,
     modalRoot
   );
+};
+
+Modal.propTypes = {
+  children: PropTypes.node.isRequired,
+  onCloseModal: PropTypes.func.isRequired,
 };
 
 export default Modal;
