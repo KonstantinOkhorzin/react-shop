@@ -2,19 +2,15 @@ import { MdDelete } from 'react-icons/md';
 import { BsFillPlusCircleFill } from 'react-icons/bs';
 import { AiFillMinusCircle } from 'react-icons/ai';
 import PropTypes from 'prop-types';
+import { useContext } from 'react';
 
+import OrderContext from '../../context/order/OrderContext';
 import IconButton from '../UI/IconButton';
 import { Item, Title, QuantityControls, Quantity, Total, RemoveButtom } from './OrderItem.styled';
 
-const OrderItem = ({
-  name,
-  price,
-  quantity,
-  onRemoveOrderItem,
-  onDecreaseQuantity,
-  onIncreaseQuantity,
-  onInputQuantityChange,
-}) => {
+const OrderItem = ({ id, name, price, quantity }) => {
+  const { decreaseQuantity, inputQuantityChange, increaseQuantity, removeOrderItem } =
+    useContext(OrderContext);
   const totalItemPrice = price * quantity;
 
   return (
@@ -22,7 +18,7 @@ const OrderItem = ({
       <Title>{name}</Title>
       <QuantityControls>
         <IconButton
-          onClick={onDecreaseQuantity}
+          onClick={() => decreaseQuantity(id)}
           aria-label='decrease quantity'
           disabled={quantity === 1}
         >
@@ -30,11 +26,11 @@ const OrderItem = ({
         </IconButton>
         <Quantity
           value={quantity}
-          onChange={onInputQuantityChange}
+          onChange={e => inputQuantityChange(e, id)}
           aria-label='quantity of goods'
         />
         <IconButton
-          onClick={onIncreaseQuantity}
+          onClick={() => increaseQuantity(id)}
           aria-label='increase quantity'
           disabled={quantity === 99}
         >
@@ -42,7 +38,7 @@ const OrderItem = ({
         </IconButton>
       </QuantityControls>
       <Total>{totalItemPrice}</Total>
-      <RemoveButtom onClick={onRemoveOrderItem} aria-label='remove order item'>
+      <RemoveButtom onClick={() => removeOrderItem(id)} aria-label='remove order item'>
         <MdDelete />
       </RemoveButtom>
     </Item>
@@ -53,10 +49,7 @@ OrderItem.propTypes = {
   name: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
   quantity: PropTypes.number.isRequired,
-  onRemoveOrderItem: PropTypes.func.isRequired,
-  onDecreaseQuantity: PropTypes.func.isRequired,
-  onIncreaseQuantity: PropTypes.func.isRequired,
-  onInputQuantityChange: PropTypes.func.isRequired,
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
 };
 
 export default OrderItem;

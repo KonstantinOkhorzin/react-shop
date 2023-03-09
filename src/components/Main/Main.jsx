@@ -9,10 +9,10 @@ const StyledMain = styled.main`
   padding-right: ${({ theme }) => theme.space[4]}px;
 `;
 
-const Main = (props) => {
+const Main = () => {
   return (
     <StyledMain>
-      <GoodsInfo {...props} />
+      <GoodsInfo/>
     </StyledMain>
   );
 };

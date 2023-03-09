@@ -1,13 +1,13 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { MdShoppingCart } from 'react-icons/md';
 import { BsFillBasket2Fill } from 'react-icons/bs';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import IconButton from '../UI/IconButton';
 import Badge from '../UI/Badge';
 import Modal from '../UI/Modal';
 import OrderInfo from '../OrderInfo';
+import OrderContext from '../../context/order/OrderContext';
 
 const DefaultBasket = styled.div`
   display: flex;
@@ -23,8 +23,9 @@ const DefaultBasket = styled.div`
   }
 `;
 
-const Basket = ({ order, ...restProps }) => {
+const Basket = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const { order } = useContext(OrderContext);
 
   const toggleModal = () => {
     setModalIsOpen(state => !state);
@@ -39,7 +40,7 @@ const Basket = ({ order, ...restProps }) => {
       {modalIsOpen && (
         <Modal onCloseModal={toggleModal}>
           {order.length > 0 ? (
-            <OrderInfo order={order} {...restProps} />
+            <OrderInfo/>
           ) : (
             <DefaultBasket>
               <BsFillBasket2Fill />
@@ -52,8 +53,5 @@ const Basket = ({ order, ...restProps }) => {
   );
 };
 
-Basket.propTypes = {
-  order: PropTypes.array.isRequired,
-};
 
 export default Basket;

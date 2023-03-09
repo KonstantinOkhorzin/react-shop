@@ -1,10 +1,41 @@
-import PropTypes from 'prop-types';
+import { useState, useEffect } from 'react';
 
 import GoodsList from '../GoodsList/GoodsList';
 import PendingDataView from '../PendingDataView';
 import ErrorDataView from '../ErrorDataView';
 
-const GoodsInfo = ({ goods, status, error, onAddToBasket }) => {
+import { fetchFeaturedGoods } from '../../services/api';
+
+const Status = {
+  IDLE: 'idle',
+  PENDING: 'pending',
+  RESOLVED: 'resolved',
+  REJECTED: 'rejected',
+};
+
+const GoodsInfo = () => {
+  const [goods, setGoods] = useState([]);
+  const [error, setError] = useState(null);
+  const [status, setStatus] = useState(Status.IDLE);
+
+  useEffect(() => {
+    setStatus(Status.PENDING);
+
+    fetchFeaturedGoods()
+      .then(response => {
+        setGoods(
+          response.data.featured.filter(
+            (item, index, self) => index === self.findIndex(product => product.id === item.id)
+          )
+        );
+        setStatus(Status.RESOLVED);
+      })
+      .catch(error => {
+        setError(error.message);
+        setStatus(Status.REJECTED);
+      });
+  }, []);
+
   switch (status) {
     case 'pending':
       return <PendingDataView />;
@@ -13,15 +44,11 @@ const GoodsInfo = ({ goods, status, error, onAddToBasket }) => {
       return <ErrorDataView error={error} />;
 
     case 'resolved':
-      return <GoodsList goods={goods} onAddToBasket={onAddToBasket} />;
+      return <GoodsList goods={goods} />;
 
     default:
       return null;
   }
-};
-
-ErrorDataView.propTypes = {
-  status: PropTypes.string.isRequired,
 };
 
 export default GoodsInfo;
