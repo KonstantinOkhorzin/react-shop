@@ -1,57 +1,39 @@
-import { useState, useContext } from 'react';
+import { useContext } from 'react';
 import { MdShoppingCart } from 'react-icons/md';
-import { BsFillBasket2Fill } from 'react-icons/bs';
 import styled from 'styled-components';
 
-import IconButton from '../UI/IconButton';
 import Badge from '../UI/Badge';
-import Modal from '../UI/Modal';
-import OrderInfo from '../OrderInfo';
 import OrderContext from '../../context/order/OrderContext';
+import { Link } from 'react-router-dom';
 
-const DefaultBasket = styled.div`
+const StyledLink = styled(Link)`
+  position: relative;
+  width: 40px;
+  height: 40px;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  gap: ${({ theme }) => theme.space[4]}px;
-  svg {
-    width: 50px;
-    height: 50px;
+  border-radius: ${({ theme }) => theme.radii.round};
+  transition: background-color ${({ theme }) => theme.animation.cubicBezier};
+  :hover,
+  :focus {
+    background-color: ${({ theme }) => theme.colors.secondary};
   }
-  p {
-    font-size: ${({ theme }) => theme.fontSizes.l}px;
+  svg {
+    width: 25px;
+    height: 25px;
   }
 `;
 
 const Basket = () => {
-  const [modalIsOpen, setModalIsOpen] = useState(false);
   const { order } = useContext(OrderContext);
 
-  const toggleModal = () => {
-    setModalIsOpen(state => !state);
-  };
-
   return (
-    <>
-      <IconButton aria-label='cart' onClick={toggleModal}>
-        {order.length > 0 && <Badge quantity={order.length} />}
-        <MdShoppingCart />
-      </IconButton>
-      {modalIsOpen && (
-        <Modal onCloseModal={toggleModal}>
-          {order.length > 0 ? (
-            <OrderInfo/>
-          ) : (
-            <DefaultBasket>
-              <BsFillBasket2Fill />
-              <p>Basket is empty</p>
-            </DefaultBasket>
-          )}
-        </Modal>
-      )}
-    </>
+    <StyledLink to='/order'>
+      {order.length > 0 && <Badge quantity={order.length} />}
+      <MdShoppingCart />
+    </StyledLink>
   );
 };
-
 
 export default Basket;

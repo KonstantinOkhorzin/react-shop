@@ -13,12 +13,13 @@ const StyledHeader = styled.header`
   padding-right: ${({ theme }) => theme.space[5]}px;
   padding-top: ${({ theme }) => theme.space[3]}px;
   padding-bottom: ${({ theme }) => theme.space[3]}px;
+  z-index: 5;
 `;
 
 const Header = () => {
   return (
     <StyledHeader>
-      <Basket/>
+      <Basket />
     </StyledHeader>
   );
 };

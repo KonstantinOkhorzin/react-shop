@@ -1,7 +1,22 @@
+import { BsFillBasket2Fill } from 'react-icons/bs';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
 
-const StyledButton = styled.button`
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: ${({ theme }) => theme.space[4]}px;
+  svg {
+    width: 50px;
+    height: 50px;
+  }
+  p {
+    font-size: ${({ theme }) => theme.fontSizes.l}px;
+  }
+`;
+
+const StyledLink = styled(Link)`
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -13,13 +28,11 @@ const StyledButton = styled.button`
   border: ${({ theme }) => theme.borders.normal};
   border-color: ${({ theme }) => theme.colors.text};
   border-radius: ${({ theme }) => theme.radii.normal};
-  background-color: ${({ theme, disabled }) =>
-    disabled ? theme.colors.red : theme.colors.primary};
+  background-color: ${({ theme }) => theme.colors.primary};
   color: ${({ theme }) => theme.colors.text};
-  cursor: ${({ disabled }) => !disabled && 'pointer'};
   transition: all ${({ theme }) => theme.animation.cubicBezier};
-  :hover:not(:disabled),
-  :focus:not(:disabled) {
+  :hover,
+  :focus {
     background-color: ${({ theme }) => theme.colors.text};
     color: ${({ theme }) => theme.colors.primary};
   }
@@ -28,20 +41,15 @@ const StyledButton = styled.button`
   }
 `;
 
-const Button = ({ type = 'button', disabled = false, icon: Icon = null, children, ...props }) => {
+
+const DefaultBasket = () => {
   return (
-    <StyledButton type={type} disabled={disabled} {...props}>
-      {Icon && <Icon />}
-      {children}
-    </StyledButton>
+    <Container>
+      <BsFillBasket2Fill />
+      <p>Basket is empty</p>
+      <StyledLink to='/goods'>Back to all goods</StyledLink>
+    </Container>
   );
 };
 
-Button.propTypes = {
-  children: PropTypes.node.isRequired,
-  type: PropTypes.string,
-  disabled: PropTypes.bool,
-  icon: PropTypes.elementType,
-};
-
-export default Button;
+export default DefaultBasket;

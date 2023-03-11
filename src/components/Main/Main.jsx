@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 
-import GoodsInfo from '../GoodsInfo';
-
 const StyledMain = styled.main`
   max-width: 1200px;
   margin: 0 auto;
@@ -9,10 +7,10 @@ const StyledMain = styled.main`
   padding-right: ${({ theme }) => theme.space[4]}px;
 `;
 
-const Main = () => {
+const Main = ({children}) => {
   return (
     <StyledMain>
-      <GoodsInfo/>
+      {children}
     </StyledMain>
   );
 };
