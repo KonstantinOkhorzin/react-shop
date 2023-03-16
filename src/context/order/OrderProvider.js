@@ -26,8 +26,8 @@ const Provider = ({ children }) => {
     dispatch({ type: 'INCREASE_QUANTITY', payload: { id } });
   };
 
-  value.inputQuantityChange = (event, id) => {
-    dispatch({ type: 'INPUT_QUANTITY_CHANGE', payload: { event, id } });
+  value.inputQuantityChange = (value, id) => {
+    dispatch({ type: 'INPUT_QUANTITY_CHANGE', payload: { value, id } });
   };
 
   return <OrderContext.Provider value={value}>{children}</OrderContext.Provider>;

@@ -26,7 +26,7 @@ const OrderItem = ({ id, name, price, quantity }) => {
         </IconButton>
         <Quantity
           value={quantity}
-          onChange={e => inputQuantityChange(e, id)}
+          onChange={e => inputQuantityChange(e.target.value, id)}
           aria-label='quantity of goods'
         />
         <IconButton

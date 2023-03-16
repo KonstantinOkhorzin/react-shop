@@ -40,7 +40,7 @@ const orderReducer = (state, { type, payload }) => {
       };
 
     case 'INPUT_QUANTITY_CHANGE':
-      const value = Number(payload.event.target.value.replace(/\D/g, ''));
+      const value = Number(payload.value.replace(/\D/g, ''));
       return {
         ...state,
         order: state.order.map(item =>
