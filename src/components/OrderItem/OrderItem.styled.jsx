@@ -10,6 +10,7 @@ export const Item = styled.li`
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}px) {
     grid-template-columns: 2fr repeat(2, 1fr) auto;
+    padding-left: ${({ theme }) => theme.space[4]}px;
   }
 `;
 
