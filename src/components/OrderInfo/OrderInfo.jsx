@@ -16,7 +16,7 @@ const OrderInfo = () => {
 
   return (
     <>
-      <StyledLink to='/goods'>Back to all goods</StyledLink>
+      <StyledLink to='/goods'>Back to goods</StyledLink>
       <Order>
         <Title>Your order</Title>
         <OrderList />

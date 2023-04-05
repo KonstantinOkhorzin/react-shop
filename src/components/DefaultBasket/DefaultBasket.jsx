@@ -22,7 +22,7 @@ const DefaultBasket = () => {
     <Container>
       <BsFillBasket2Fill />
       <p>Basket is empty</p>
-      <StyledLink to='/goods'>Back to all goods</StyledLink>
+      <StyledLink to='/goods'>Back to goods</StyledLink>
     </Container>
   );
 };
