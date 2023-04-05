@@ -2,6 +2,7 @@ import { useContext } from 'react';
 
 import OrderList from '../OrderList';
 import { Order, Title, Total } from './OrderInfo.styled';
+import StyledLink from '../UI/StyledLink';
 import OrderContext from '../../context/order/OrderContext';
 
 export const convertedPrice = (price) => {
@@ -14,11 +15,14 @@ const OrderInfo = () => {
   const convertedOrderTotalPrice = convertedPrice(orderTotalPrice);
 
   return (
-    <Order>
-      <Title>Your order</Title>
-      <OrderList />
-      <Total>Order total price: {convertedOrderTotalPrice}</Total>
-    </Order>
+    <>
+      <StyledLink to='/goods'>Back to all goods</StyledLink>
+      <Order>
+        <Title>Your order</Title>
+        <OrderList />
+        <Total>Order total price: {convertedOrderTotalPrice}</Total>
+      </Order>
+    </>
   );
 };
 
