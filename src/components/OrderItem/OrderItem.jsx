@@ -7,11 +7,13 @@ import { useContext } from 'react';
 import OrderContext from '../../context/order/OrderContext';
 import IconButton from '../UI/IconButton';
 import { Item, Title, QuantityControls, Quantity, Total, RemoveButtom } from './OrderItem.styled';
+import { convertedPrice } from '../OrderInfo/OrderInfo';
 
 const OrderItem = ({ id, name, price, quantity }) => {
   const { decreaseQuantity, inputQuantityChange, increaseQuantity, removeOrderItem } =
     useContext(OrderContext);
   const totalItemPrice = price * quantity;
+  const convertedTotalItemPrice = convertedPrice(totalItemPrice);
 
   return (
     <Item>
@@ -37,7 +39,7 @@ const OrderItem = ({ id, name, price, quantity }) => {
           <BsFillPlusCircleFill />
         </IconButton>
       </QuantityControls>
-      <Total>{totalItemPrice}</Total>
+      <Total>{convertedTotalItemPrice}</Total>
       <RemoveButtom onClick={() => removeOrderItem(id)} aria-label='remove order item'>
         <MdDelete />
       </RemoveButtom>
