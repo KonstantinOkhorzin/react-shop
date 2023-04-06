@@ -1,0 +1,11 @@
+{
+  "files": {
+    "main.js": "/react-shop/static/js/main.3679be84.js",
+    "static/media/404.svg": "/react-shop/static/media/404.a1796769aa1abf4febab5c8be64043ba.svg",
+    "index.html": "/react-shop/index.html",
+    "main.3679be84.js.map": "/react-shop/static/js/main.3679be84.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.3679be84.js"
+  ]
+}
