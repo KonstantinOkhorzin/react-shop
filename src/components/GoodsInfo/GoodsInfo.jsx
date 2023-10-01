@@ -24,7 +24,7 @@ const GoodsInfo = () => {
     fetchFeaturedGoods()
       .then(response => {
         setGoods(
-          response.data.featured.filter(
+          response.data.daily.filter(
             (item, index, self) => index === self.findIndex(product => product.id === item.id)
           )
         );
