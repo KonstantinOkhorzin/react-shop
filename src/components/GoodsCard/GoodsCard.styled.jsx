@@ -16,6 +16,9 @@ export const WrapperImg = styled.div`
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-position: center center;
+  img {
+    height: 100%;
+  }
 `;
 
 export const Content = styled.div`
