@@ -4,17 +4,19 @@ import { FaCartPlus } from 'react-icons/fa';
 
 import OrderContext from '../../context/order/OrderContext';
 import Button from '../UI/Button';
-import { Card, Content, Title, Description } from './GoodsCard.styled';
+import { Card, WrapperImg, Content, Title, Description } from './GoodsCard.styled';
 
 const GoodsCard = ({ id, name, description, price, full_background: src }) => {
-const { addToBasket } = useContext(OrderContext);
+  const { addToBasket } = useContext(OrderContext);
 
   return (
     <Card>
-      <img src={src} alt='' />
+      <WrapperImg>
+        <img src={src} alt='' />
+      </WrapperImg>
       <Content>
         <Title>{name}</Title>
-        <Description>{description}</Description>
+        <Description>{description === '' ? 'There is no description' : description}</Description>
         <Button icon={FaCartPlus} onClick={() => addToBasket({ id, name, price })}>
           Add to cart
         </Button>
